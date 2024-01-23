@@ -5,11 +5,11 @@ class Node{
   int data;
   Node* next;
   Node(){
-    cout<<"default constructor is called"<<endl;
+    // cout<<"default constructor is called"<<endl;
     this->next=NULL;
   }
   Node(int val){
-    cout<<"param constructor is called"<<endl;
+    // cout<<"param constructor is called"<<endl;
     this->data = val;
   }
 };
@@ -22,6 +22,29 @@ void printll(Node* head){
     temp = temp->next;
   }
 }
+void insertathead(Node* &head,int data){
+  if(head==NULL)
+  {
+  Node* temp = new Node(data);
+  head = temp;
+  }
+  else
+  {
+  Node* temp = new Node(data);
+  temp->next = head;
+  head = temp;
+  }
+}
+void insertattail(Node* &tail,int data){
+  if(tail==NULL)
+  {
+    Node* temp = new Node(data);
+    tail=temp;
+  }
+  else{Node* temp = new Node(data);
+  tail->next = temp;
+  tail = temp;}
+}
 int main() {
   // Node o(10);
   Node* first = new Node(10);
@@ -32,6 +55,10 @@ int main() {
   second->next=third;
   third->next=fourth;
   Node* head = first;
+  Node* tail = fourth;
+  insertathead(head,1);
+  insertattail(tail,100);
+  cout<<"tail is :"<<tail->data;
   printll(head);
   return 0;
 }
