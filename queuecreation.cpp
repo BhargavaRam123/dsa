@@ -90,6 +90,30 @@ class Queue{
   }
 };
 int main() {
-  cout << "Hello world!" << endl;
+  Queue q(10);
+  q.push(1);
+  q.push(1);
+  q.push(1);
+  q.push(1);
+  q.push(1);
+  q.push(1);
+  q.push(1);
+  q.push(1);
+  q.push(1);
+  q.push(1);
+  q.pop();
+  q.pop();
+  q.pop();
+  q.pop();
+  q.pop();
+  q.pop();
+  q.pop();
+  cout<<endl;
+  cout<<q.getsize();
+  // q.push(10);
+  // q.pop();
+  q.print();
+  cout<<q.isempty();
+  cout<<q.getfront();
   return 0;
 }
