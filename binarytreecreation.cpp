@@ -34,8 +34,18 @@ class Node
     return root;
 
   }
+  void preorder(Node* root)
+  {
+      if(root==NULL)
+      return ;
+      cout<<root->data<<"->";
+      preorder(root->left);
+      preorder(root->right);
+  }
 int main() {
   Node* root = createtree();
   cout<<"Root node is:"<<root->data<<endl;
+  cout<<"pre order traversal is:"<<endl;
+  preorder(root);
   return 0;
 }
