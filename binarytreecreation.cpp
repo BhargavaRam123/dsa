@@ -32,7 +32,6 @@ class Node
     root->right = createtree();
 
     return root;
-
   }
   void preorder(Node* root)
   {

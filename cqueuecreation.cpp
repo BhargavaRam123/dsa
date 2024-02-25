@@ -52,6 +52,7 @@ class cqueue
     }
     else if(front==size-1)
     {
+      // reverse wala case
       arr[front] = -1;
       front = 0 ;
     }
