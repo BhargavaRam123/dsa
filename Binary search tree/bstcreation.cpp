@@ -73,11 +73,106 @@ void levelOrderTraversal(Node* root ) {
 		}
 	}
 }
+bool searchinbst(Node* root ,int value)
+{
+    if(root==NULL)
+    return false;
+    if(root->data==value)
+    {
+        return true;
+    }
+    
+    // baki sab recursion sambal lega
+    
+    bool l = searchinbst(root->left,value);
+    bool r = searchinbst(root->right,value);
+    
+    return l||r;
+    
+}
+Node* maxValue(Node* root) {
+	if(root == NULL) {
+		return NULL;
+	}
+
+	//if tree has nodes > 0 count
+	Node* temp = root;
+	while(temp->right != NULL) {
+		temp = temp->right;
+	}
+	return temp;
+}
+
+Node* deletenodefrombst(Node* root,int value ){
+    // in this we are doing both searching and deletion part
+    if(root==NULL)
+    {
+        return NULL;
+    }
+    
+    if(root->data == value)
+    {
+        // write the deletion code here`
+        // case 1:leaf node
+        if(root->left==NULL && root->right == NULL)
+        {
+            delete root;
+            return NULL;
+        }
+        // case 2:one of the node is null and the other node is not null
+        else if(root->left==NULL && root->right!=NULL)
+        {
+            Node * temp = root->right;
+            delete root;
+            return temp ;
+        }
+        // case 3;opposite of case 2
+        else if(root->left!=NULL && root->right==NULL)
+        {
+            Node * temp = root->left;
+            delete root;
+            return temp ;
+        }
+        // case 4:delete an internal node
+        else
+        {
+            Node* temp = maxValue(root->left);
+            root->data = temp->data; 
+            root->left = deletenodefrombst(root->left,temp->data);
+            return root;
+            
+        }
+    }
+    if(value>root->data)
+    {
+        root->right = deletenodefrombst(root->right,value);
+    }
+    else{
+        root->left = deletenodefrombst(root->left,value);
+    }
+    return root;
+}
 int main() {
     
     Node* root = NULL;
     createbst(root);
     // cout<<(root->left)->data<<endl;
     levelOrderTraversal(root);
+    // int value;
+    // while(true)
+    // {
+        
+    // cout<<endl<<"The value to search: "<<endl;
+    // cin>>value;
+    // cout<<"value found:"<<searchinbst(root,value);
+    // }
+    while(true)
+    {
+        int value;
+        cout<<"Enter the value to delete:"<<endl;
+        cin>>value;
+        root = deletenodefrombst(root,value);
+        levelOrderTraversal(root);
+    }
     return 0;
 }
