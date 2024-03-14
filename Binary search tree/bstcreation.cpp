@@ -152,12 +152,28 @@ Node* deletenodefrombst(Node* root,int value ){
     }
     return root;
 }
+
+Node* constructbstfrominorder(Node* root,int inorder[],int s,int e)
+{
+    if(s>e)
+    {
+        return NULL;
+    }
+
+    // ek case thum solve karo baki sab recursion
+
+    int mid = (s+e)/2;
+     root = new Node(inorder[mid]);
+     root->left = constructbstfrominorder(root->left,inorder,s,mid-1);
+     root->right = constructbstfrominorder(root->right,inorder,mid+1,e);
+     return root; 
+}
 int main() {
     
-    Node* root = NULL;
-    createbst(root);
+    // Node* root = NULL;
+    // createbst(root);
     // cout<<(root->left)->data<<endl;
-    levelOrderTraversal(root);
+    // levelOrderTraversal(root);
     // int value;
     // while(true)
     // {
@@ -166,13 +182,17 @@ int main() {
     // cin>>value;
     // cout<<"value found:"<<searchinbst(root,value);
     // }
-    while(true)
-    {
-        int value;
-        cout<<"Enter the value to delete:"<<endl;
-        cin>>value;
-        root = deletenodefrombst(root,value);
-        levelOrderTraversal(root);
-    }
+    // while(true)
+    // {
+    //     int value;
+    //     cout<<"Enter the value to delete:"<<endl;
+    //     cin>>value;
+    //     root = deletenodefrombst(root,value);
+    //     levelOrderTraversal(root);
+    // }
+    Node* root = NULL;
+    int inoder[] = [1,2,3,4,5,6,7];
+    root = constructbstfrominorder(root,inorder,0,6);
+    levelOrderTraversal(root);
     return 0;
 }
