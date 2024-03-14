@@ -191,8 +191,8 @@ int main() {
     //     levelOrderTraversal(root);
     // }
     Node* root = NULL;
-    int inoder[] = [1,2,3,4,5,6,7];
-    root = constructbstfrominorder(root,inorder,0,6);
+    int inoder[] = {1,2,3,4,5,6,7};
+    root = constructbstfrominorder(root,inoder,0,6);
     levelOrderTraversal(root);
     return 0;
 }
